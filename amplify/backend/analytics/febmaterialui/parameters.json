@@ -1,0 +1,21 @@
+{
+    "appName": "febmaterialui",
+    "roleName": "pinpointLambdaRole0faa3945",
+    "cloudformationPolicyName": "cloudformationPolicy0faa3945",
+    "cloudWatchPolicyName": "cloudWatchPolicy0faa3945",
+    "pinpointPolicyName": "pinpointPolicy0faa3945",
+    "authPolicyName": "pinpoint_amplify_0faa3945",
+    "unauthPolicyName": "pinpoint_amplify_0faa3945",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
