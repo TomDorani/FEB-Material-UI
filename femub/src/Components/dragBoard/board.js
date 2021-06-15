@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Button from "@material-ui/core/Button";
+import { Container, Paper, Typography } from "@material-ui/core";
 
 // fake data generator
 const getItems = (count, offset = 0) =>
@@ -39,7 +40,8 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 	// some basic styles to make the items look a bit nicer
 	userSelect: "none",
 	padding: grid * 2,
-	margin: `0 0 ${grid}px 0`,
+	margin: `3px 3px ${grid}px 3px`,
+	// width: "90%",
 
 	// change background colour if dragging
 	background: isDragging ? "lightgreen" : "grey",
@@ -47,14 +49,15 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 	// styles we need to apply on draggables
 	...draggableStyle,
 });
-const getListStyle = (isDraggingOver) => ({
+const getListStyle = (isDraggingOver, itemsLength) => ({
 	background: isDraggingOver ? "lightblue" : "lightgrey",
+	display: "flex",
 	padding: grid,
-	width: 250,
+	margin: "9px",
 });
 
 const Board = (props) => {
-	const [state, setState] = useState([getItems(10), getItems(5, 10)]);
+	const [state, setState] = useState([]);
 
 	function onDragEnd(result) {
 		const { source, destination } = result;
@@ -82,81 +85,93 @@ const Board = (props) => {
 	}
 
 	return (
-		<div>
-			<Button
-				type="button"
-				onClick={() => {
-					setState([...state, []]);
-				}}
-			>
-				Add new group
-			</Button>
-			<Button
-				type="button"
-				onClick={() => {
-					setState([...state, getItems(1)]);
-				}}
-			>
-				Add new item
-			</Button>
-			<div style={{ display: "flex" }}>
-				<DragDropContext onDragEnd={onDragEnd}>
-					{state.map((el, ind) => (
-						<Droppable key={ind} droppableId={`${ind}`}>
-							{(provided, snapshot) => (
-								<div
-									ref={provided.innerRef}
-									style={getListStyle(snapshot.isDraggingOver)}
-									{...provided.droppableProps}
-								>
-									{el.map((item, index) => (
-										<Draggable
-											key={item.id}
-											draggableId={item.id}
-											index={index}
-										>
-											{(provided, snapshot) => (
-												<div
-													ref={provided.innerRef}
-													{...provided.draggableProps}
-													{...provided.dragHandleProps}
-													style={getItemStyle(
-														snapshot.isDragging,
-														provided.draggableProps.style
-													)}
-												>
+		<Container>
+			<Paper elevation={3}>
+				<Button
+					type="button"
+					onClick={() => {
+						setState([...state, []]);
+					}}
+				>
+					Add new group
+				</Button>
+				<Button
+					type="button"
+					onClick={() => {
+						setState([...state, getItems(1)]);
+					}}
+				>
+					Add new item
+				</Button>
+
+				<div>
+					<DragDropContext onDragEnd={onDragEnd}>
+						{state.map((el, ind) => (
+							<Droppable
+								key={ind}
+								droppableId={`${ind}`}
+								direction="horizontal"
+							>
+								{(provided, snapshot) => (
+									<div
+										ref={provided.innerRef}
+										style={getListStyle(snapshot.isDraggingOver, ind)}
+										{...provided.droppableProps}
+									>
+										<div>
+											<Typography>Row</Typography>
+											<Button>X</Button>
+											<Button>...</Button>
+										</div>
+										{el.map((item, index) => (
+											<Draggable
+												key={item.id}
+												draggableId={item.id}
+												index={index}
+											>
+												{(provided, snapshot) => (
 													<div
-														style={{
-															display: "flex",
-															justifyContent: "space-around",
-														}}
+														ref={provided.innerRef}
+														{...provided.draggableProps}
+														{...provided.dragHandleProps}
+														style={getItemStyle(
+															snapshot.isDragging,
+															provided.draggableProps.style
+														)}
 													>
-														{item.content}
-														<Button
-															type="button"
-															onClick={() => {
-																const newState = [...state];
-																newState[ind].splice(index, 1);
-																setState(
-																	newState.filter((group) => group.length)
-																);
+														<div
+															style={{
+																display: "flex",
+																justifyContent: "space-around",
 															}}
 														>
-															delete
-														</Button>
+															{item.content}
+															<Button
+																type="button"
+																onClick={() => {
+																	const newState = [...state];
+																	newState[ind].splice(index, 1);
+																	setState(
+																		newState.filter((group) => group.length)
+																	);
+																}}
+															>
+																X
+															</Button>
+														</div>
 													</div>
-												</div>
-											)}
-										</Draggable>
-									))}
-									{provided.placeholder}
-								</div>
-							)}
-						</Droppable>
-					))}
-				</DragDropContext>
-			</div>
-		</div>
+												)}
+											</Draggable>
+										))}
+										{provided.placeholder}
+									</div>
+								)}
+							</Droppable>
+						))}
+					</DragDropContext>
+				</div>
+			</Paper>
+		</Container>
 	);
 };
 export default Board;
