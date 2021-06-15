@@ -4,7 +4,7 @@ import "./App.css";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import { Button } from "@material-ui/core";
 import Amplify, { Analytics } from "aws-amplify";
-
+import Board from "./Components/dragBoard/board";
 import awsconfig from "./aws-exports";
 Amplify.configure(awsconfig);
 
@@ -22,10 +22,7 @@ function App() {
 	return (
 		<div className="App">
 			<AmplifySignOut />
-			<header>
-				<img src={logo} className="App-logo" alt="logo" />
-				<h1>We now have Auth!</h1>
-			</header>
+			<Board />
 			<Button
 				color="primary"
 				onClick={() => {
@@ -35,7 +32,6 @@ function App() {
 			>
 				Hello World
 			</Button>
-			;
 		</div>
 	);
 }
