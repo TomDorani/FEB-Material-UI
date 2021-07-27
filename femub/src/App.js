@@ -1,14 +1,16 @@
 import React from "react";
 import "./App.css";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import Amplify, { Analytics } from "aws-amplify";
+import Amplify, { Analytics, API } from "aws-amplify";
 import { Container } from "@material-ui/core";
 import awsconfig from "./aws-exports";
 import "./styles.css";
 import { StateMachineProvider, createStore } from "little-state-machine";
 import ScrollDialog from "./Components/Dialog";
 import DataMain from "./Components/data/DataMain";
+
 Amplify.configure(awsconfig);
+API.configure(awsconfig);
 
 Analytics.autoTrack("pageView", {
 	enable: true,
@@ -25,6 +27,7 @@ createStore({
 
 function App() {
 	Analytics.record({ name: "albumVisit" });
+
 	return (
 		<StateMachineProvider>
 			<div className="App">

@@ -1,0 +1,42 @@
+{
+  "paths": [
+    {
+      "name": "/records",
+      "lambdaFunction": "getUserRecords",
+      "privacy": {
+        "private": true,
+        "auth": [
+          "/POST",
+          "/GET",
+          "/PUT",
+          "/PATCH",
+          "/DELETE"
+        ]
+      },
+      "policyResourceName": "/records"
+    }
+  ],
+  "resourceName": "CYSAPI",
+  "apiName": "CYSAPI",
+  "functionArns": [
+    {
+      "lambdaFunction": "getUserRecords"
+    }
+  ],
+  "privacy": {
+    "auth": 1,
+    "unauth": 0,
+    "authRoleName": "amplify-amplifyb89a161abf464-staging-175206-authRole",
+    "unAuthRoleName": "amplify-amplifyb89a161abf464-staging-175206-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "getUserRecords",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}

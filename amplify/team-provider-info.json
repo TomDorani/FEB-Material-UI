@@ -14,6 +14,13 @@
     "categories": {
       "auth": {
         "febmaterialui948abd97": {}
+      },
+      "function": {
+        "getUserRecords": {
+          "username": "2\\\\",
+          "deploymentBucketName": "amplify-amplifyb89a161abf464-staging-175206-deployment",
+          "s3Key": "amplify-builds/getUserRecords-466c5243556d44515158-build.zip"
+        }
       }
     }
   }
