@@ -93,6 +93,7 @@ export default function BasicTable(props) {
 				str += " " + value + ",";
 			}
 		}
+
 		if (str.length > 0) {
 			return str.slice(0, -1);
 		}
