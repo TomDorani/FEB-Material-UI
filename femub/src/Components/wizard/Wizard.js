@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Step0 from "./step0";
 import Step1 from "./step1";
@@ -71,18 +70,18 @@ export default function Wizard(props) {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	};
 
-	const handleSkip = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep + 1);
-		setSkipped((prevSkipped) => {
-			const newSkipped = new Set(prevSkipped.values());
-			newSkipped.add(activeStep);
-			return newSkipped;
-		});
-	};
+	// const handleSkip = () => {
+	// 	setActiveStep((prevActiveStep) => prevActiveStep + 1);
+	// 	setSkipped((prevSkipped) => {
+	// 		const newSkipped = new Set(prevSkipped.values());
+	// 		newSkipped.add(activeStep);
+	// 		return newSkipped;
+	// 	});
+	// };
 
-	const handleReset = () => {
-		setActiveStep(0);
-	};
+	// const handleReset = () => {
+	// 	setActiveStep(0);
+	// };
 
 	return (
 		<div className={classes.root}>

@@ -77,7 +77,7 @@ export default function BasicTable(props) {
 		})();
 		console.log("data", data);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [props.fresh]);
 
 	useEffect(() => {
 		const result = data.filter((word) => dateCurrent(word.timestampe));
@@ -89,7 +89,7 @@ export default function BasicTable(props) {
 	function buidNote(row) {
 		let str = "";
 		for (const [key, value] of Object.entries(row)) {
-			if (key.includes("Note")) {
+			if (key.includes("Note") && value.length > 0) {
 				str += " " + value + ",";
 			}
 		}

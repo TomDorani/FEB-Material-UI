@@ -10,8 +10,10 @@ const Step0 = (props) => {
 	const [selectedDate, handleDateChange] = useState(new Date());
 	// eslint-disable-next-line no-unused-vars
 	const { actions, state } = useStateMachine({ updateAction });
+	const defaultC = { "drugs-note": "", "alcohol-note": "" };
 
 	const onSubmit = (data) => {
+		actions.updateAction(defaultC);
 		console.log("data", data);
 		actions.updateAction(data);
 		props.next();

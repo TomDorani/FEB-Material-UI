@@ -13,14 +13,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function DataMain() {
+export default function DataMain(props) {
 	const classes = useStyles();
 	const [selectedDate, handleDateChange] = useState(new Date());
 
 	return (
 		<div className={classes.root}>
 			<Paper elevation={2}>
-				<Table date={selectedDate} />
+				<Table date={selectedDate} fresh={props.fresh} />
 				<div component="span">
 					<MuiPickersUtilsProvider utils={DateFnsUtils}>
 						<DatePicker

@@ -2,7 +2,7 @@ import React from "react";
 import { useStateMachine } from "little-state-machine";
 import updateAction from "./updateAction";
 import { API } from "aws-amplify";
-import awsconfig from "./../../aws-exports";
+// import awsconfig from "./../../aws-exports";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableCell from "@material-ui/core/TableCell";

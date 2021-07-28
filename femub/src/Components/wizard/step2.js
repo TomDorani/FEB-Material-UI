@@ -12,6 +12,7 @@ import MoodBadIcon from "@material-ui/icons/MoodBad";
 import Switch from "@material-ui/core/Switch";
 const Step2 = (props) => {
 	const { control, register, handleSubmit, watch } = useForm();
+	// eslint-disable-next-line no-unused-vars
 	const { actions, state } = useStateMachine({ updateAction });
 	const watchAlcohol = watch("alcohol-switch", false);
 	const watchDrugs = watch("drugs-switch", false);
@@ -120,6 +121,7 @@ const Step2 = (props) => {
 								<Input
 									ref={register("alcohol-note")}
 									name="alcohol-note"
+									defaultValue=""
 									type="text"
 									InputLabelProps={{
 										shrink: true,
@@ -153,7 +155,7 @@ const Step2 = (props) => {
 						</label>
 					</label>
 					<br />
-					<button type="submit">next</button>
+
 					<button
 						type="back"
 						onClick={() => {
@@ -162,6 +164,7 @@ const Step2 = (props) => {
 					>
 						back
 					</button>
+					<button type="submit">next</button>
 				</label>
 			</Form>
 		</MainContainer>

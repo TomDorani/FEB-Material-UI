@@ -11,6 +11,7 @@ import MoodIcon from "@material-ui/icons/Mood";
 import MoodBadIcon from "@material-ui/icons/MoodBad";
 const Step1 = (props) => {
 	const { control, register, handleSubmit } = useForm();
+	// eslint-disable-next-line no-unused-vars
 	const { actions, state } = useStateMachine({ updateAction });
 	const onSubmit = (data) => {
 		console.log("data", data);

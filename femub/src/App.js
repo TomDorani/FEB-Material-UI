@@ -26,6 +26,10 @@ createStore({
 });
 
 function App() {
+	const [refresh, setRefresh] = React.useState(true);
+	const reload = () => {
+		setRefresh(!refresh);
+	};
 	Analytics.record({ name: "albumVisit" });
 
 	return (
@@ -33,18 +37,8 @@ function App() {
 			<div className="App">
 				<Container maxWidth="lg">
 					<AmplifySignOut />
-
-					<ScrollDialog />
-					<DataMain />
-					{/* <Button
-					color="primary"
-					onClick={() => {
-						Analytics.record({ name: "albumVisitAfter" });
-						alert("Hey you doin' it Wrong");
-					}}
-				>
-					Hello World
-				</Button> */}
+					<ScrollDialog onExit={reload} />
+					<DataMain fresh={refresh} />
 				</Container>
 			</div>
 		</StateMachineProvider>
