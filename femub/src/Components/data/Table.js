@@ -44,12 +44,29 @@ const useStyles = makeStyles({
 //     }
 //   }
 
-export default function BasicTable() {
+export default function BasicTable(props) {
 	const classes = useStyles();
 	const [data, setData] = useState([]);
+	const [filtered, setfiltered] = useState([]);
 	// function createData(props) {
 	// 	return { name, calories, fat, carbs, protein };
 	// }
+	function dateCurrent(value) {
+		let date = value.split("-");
+		console.log("d", date);
+		console.log("curr", props.date);
+		console.log(
+			props.date.getFullYear(),
+			date[0],
+			"&&",
+			props.date.getMonth(),
+			date[1]
+		);
+		return (
+			String(props.date.getFullYear()) === date[0] &&
+			String(props.date.getMonth()) === date[1]
+		);
+	}
 
 	useEffect(() => {
 		function getData() {
@@ -64,12 +81,17 @@ export default function BasicTable() {
 
 		(async function () {
 			const response = await getData();
-
 			setData(response["Items"]);
+			console.log("res", response);
 		})();
-		getData();
-		console.log("res", data);
+		console.log("data", data);
 	}, []);
+
+	useEffect(() => {
+		const result = data.filter((word) => dateCurrent(word.timestampe));
+		setfiltered(result);
+		console.log("filter", filtered);
+	}, [props.date, data]);
 
 	return (
 		<TableContainer component={Paper}>
@@ -88,7 +110,7 @@ export default function BasicTable() {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{data.map((row) => (
+					{filtered.map((row) => (
 						<TableRow key={row.timestampe}>
 							<TableCell component="th" scope="row">
 								{row.timestampe.split("-")[2]}

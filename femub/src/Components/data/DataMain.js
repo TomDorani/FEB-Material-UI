@@ -20,7 +20,7 @@ export default function DataMain() {
 	return (
 		<div className={classes.root}>
 			<Paper elevation={2}>
-				<Table />
+				<Table date={selectedDate} />
 				<div component="span">
 					<MuiPickersUtilsProvider utils={DateFnsUtils}>
 						<DatePicker
