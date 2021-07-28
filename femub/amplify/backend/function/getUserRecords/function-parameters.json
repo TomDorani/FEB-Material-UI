@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "auth": {
+      "febmaterialui948abd97": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "username",
+      "environmentVariableName": "username"
+    }
+  ]
+}
