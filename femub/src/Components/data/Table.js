@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,24 +7,23 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
+import { API } from "aws-amplify";
+import awsconfig from "./../../aws-exports";
+// Amplify.configure(awsconfig);
+API.configure(awsconfig);
 const useStyles = makeStyles({
 	table: {
 		minWidth: 650,
 	},
 });
 
-function createData(name, calories, fat, carbs, protein) {
-	return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-	createData(1, 3, 2, 6, 5),
-	createData(2, 237, 9.0, 37, 4.3),
-	createData("Eclair", 262, 16.0, 24, 6.0),
-	createData("Cupcake", 305, 3.7, 67, 4.3),
-	createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
+// const rows = [
+// 	createData(1, 3, 2, 6, 5),
+// 	createData(2, 237, 9.0, 37, 4.3),
+// 	createData("Eclair", 262, 16.0, 24, 6.0),
+// 	createData("Cupcake", 305, 3.7, 67, 4.3),
+// 	createData("Gingerbread", 356, 16.0, 49, 3.9),
+// ];
 
 // {
 //     "data": {
@@ -44,8 +43,33 @@ const rows = [
 //       "drugs-note": "2"
 //     }
 //   }
+
 export default function BasicTable() {
 	const classes = useStyles();
+	const [data, setData] = useState([]);
+	// function createData(props) {
+	// 	return { name, calories, fat, carbs, protein };
+	// }
+
+	useEffect(() => {
+		function getData() {
+			const apiName = "CYSAPI";
+			const path = "/records";
+			// const myInit = { // OPTIONAL
+			//   headers: {}, // OPTIONAL
+			// };
+
+			return API.get(apiName, path);
+		}
+
+		(async function () {
+			const response = await getData();
+
+			setData(response["Items"]);
+		})();
+		getData();
+		console.log("res", data);
+	}, []);
 
 	return (
 		<TableContainer component={Paper}>
@@ -64,15 +88,25 @@ export default function BasicTable() {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{rows.map((row) => (
-						<TableRow key={row.name}>
+					{data.map((row) => (
+						<TableRow key={row.timestampe}>
 							<TableCell component="th" scope="row">
-								{row.name}
+								{row.timestampe.split("-")[2]}
 							</TableCell>
-							<TableCell align="right">{row.calories}</TableCell>
-							<TableCell align="right">{row.fat}</TableCell>
-							<TableCell align="right">{row.carbs}</TableCell>
-							<TableCell align="right">{row.protein}</TableCell>
+							<TableCell align="right">{row.sentiSlider}</TableCell>
+							<TableCell align="right">{row.prodSlider}</TableCell>
+							<TableCell align="right">{row.energySlider}</TableCell>
+							<TableCell align="right">{row.foodSlider}</TableCell>
+							<TableCell align="right">{row.physicalSlider}</TableCell>
+							<TableCell align="right">
+								{row.alcoholSwitch ? "Yes" : "No"}
+							</TableCell>
+							<TableCell align="right">
+								{row.drugsSwitch ? "Yes" : "No"}
+							</TableCell>
+							<TableCell align="right">
+								{row.alcoholNote + " " + row.energyNote}
+							</TableCell>
 						</TableRow>
 					))}
 				</TableBody>
