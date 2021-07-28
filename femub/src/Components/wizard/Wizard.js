@@ -30,7 +30,7 @@ function getSteps() {
 		"Review & Send",
 	];
 }
-function getStepContent(step, handleNext, handleBack) {
+function getStepContent(step, handleNext, handleBack, close) {
 	switch (step) {
 		case 0:
 			return <Step0 next={handleNext} />;
@@ -39,14 +39,14 @@ function getStepContent(step, handleNext, handleBack) {
 		case 2:
 			return <Step2 next={handleNext} back={handleBack} />;
 		case 3:
-			return <Result back={handleBack} />;
+			return <Result back={handleBack} close={close} />;
 
 		default:
 			return "Unknown step";
 	}
 }
 
-export default function Wizard() {
+export default function Wizard(props) {
 	const classes = useStyles();
 	const [activeStep, setActiveStep] = React.useState(0);
 	const [skipped, setSkipped] = React.useState(new Set());
@@ -114,7 +114,7 @@ export default function Wizard() {
 				) : (
 					<div>
 						<Typography className={classes.instructions} />
-						{getStepContent(activeStep, handleNext, handleBack)}
+						{getStepContent(activeStep, handleNext, handleBack, props.close)}
 
 						{/* <div>
 							<Button

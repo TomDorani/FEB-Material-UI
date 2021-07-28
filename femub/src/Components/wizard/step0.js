@@ -8,6 +8,7 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 const Step0 = (props) => {
 	const [selectedDate, handleDateChange] = useState(new Date());
+	// eslint-disable-next-line no-unused-vars
 	const { actions, state } = useStateMachine({ updateAction });
 
 	const onSubmit = (data) => {

@@ -53,15 +53,6 @@ export default function BasicTable(props) {
 	// }
 	function dateCurrent(value) {
 		let date = value.split("-");
-		console.log("d", date);
-		console.log("curr", props.date);
-		console.log(
-			props.date.getFullYear(),
-			date[0],
-			"&&",
-			props.date.getMonth(),
-			date[1]
-		);
 		return (
 			String(props.date.getFullYear()) === date[0] &&
 			String(props.date.getMonth()) === date[1]
@@ -85,14 +76,28 @@ export default function BasicTable(props) {
 			console.log("res", response);
 		})();
 		console.log("data", data);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
 		const result = data.filter((word) => dateCurrent(word.timestampe));
 		setfiltered(result);
 		console.log("filter", filtered);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [props.date, data]);
 
+	function buidNote(row) {
+		let str = "";
+		for (const [key, value] of Object.entries(row)) {
+			if (key.includes("Note")) {
+				str += " " + value + ",";
+			}
+		}
+		if (str.length > 0) {
+			return str.slice(0, -1);
+		}
+		return str;
+	}
 	return (
 		<TableContainer component={Paper}>
 			<Table className={classes.table} aria-label="simple table">
@@ -126,9 +131,7 @@ export default function BasicTable(props) {
 							<TableCell align="right">
 								{row.drugsSwitch ? "Yes" : "No"}
 							</TableCell>
-							<TableCell align="right">
-								{row.alcoholNote + " " + row.energyNote}
-							</TableCell>
+							<TableCell align="right">{buidNote(row)}</TableCell>
 						</TableRow>
 					))}
 				</TableBody>

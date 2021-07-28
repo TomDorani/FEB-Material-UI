@@ -28,7 +28,7 @@ export default function ScrollDialog() {
 			>
 				<DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
 				<DialogContent>
-					<Wizard />
+					<Wizard close={handleClose} />
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={handleClose} variant="contained" color="primary">
