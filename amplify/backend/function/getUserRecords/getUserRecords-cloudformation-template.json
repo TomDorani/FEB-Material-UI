@@ -22,14 +22,6 @@
     "authfebmaterialui948abd97UserPoolId": {
       "Type": "String",
       "Default": "authfebmaterialui948abd97UserPoolId"
-    },
-    "apiCYSAPIApiName": {
-      "Type": "String",
-      "Default": "apiCYSAPIApiName"
-    },
-    "apiCYSAPIApiId": {
-      "Type": "String",
-      "Default": "apiCYSAPIApiId"
     }
   },
   "Conditions": {
@@ -90,12 +82,6 @@
             },
             "username": {
               "Ref": "username"
-            },
-            "API_CYSAPI_APINAME": {
-              "Ref": "apiCYSAPIApiName"
-            },
-            "API_CYSAPI_APIID": {
-              "Ref": "apiCYSAPIApiId"
             }
           }
         },
@@ -242,32 +228,6 @@
                       {
                         "Ref": "authfebmaterialui948abd97UserPoolId"
                       }
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "apigateway:GET",
-                "apigateway:HEAD",
-                "apigateway:OPTIONS"
-              ],
-              "Resource": [
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      "::/restapis/",
-                      {
-                        "Ref": "apiCYSAPIApiName"
-                      },
-                      "/*"
                     ]
                   ]
                 }
