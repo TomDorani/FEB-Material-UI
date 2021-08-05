@@ -14,7 +14,7 @@ const Step1 = (props) => {
 	// eslint-disable-next-line no-unused-vars
 	const { actions, state } = useStateMachine({ updateAction });
 	const onSubmit = (data) => {
-		console.log("data", data);
+		// console.log("data", data);
 		actions.updateAction(data);
 		props.next();
 	};

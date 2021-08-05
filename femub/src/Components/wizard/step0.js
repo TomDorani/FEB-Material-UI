@@ -14,7 +14,7 @@ const Step0 = (props) => {
 
 	const onSubmit = (data) => {
 		actions.updateAction(defaultC);
-		console.log("data", data);
+		// console.log("data", data);
 		actions.updateAction(data);
 		props.next();
 	};

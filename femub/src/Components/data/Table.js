@@ -73,16 +73,16 @@ export default function BasicTable(props) {
 		(async function () {
 			const response = await getData();
 			setData(response["Items"]);
-			console.log("res", response);
+			// console.log("res", response);
 		})();
-		console.log("data", data);
+		// console.log("data", data);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [props.fresh]);
 
 	useEffect(() => {
 		const result = data.filter((word) => dateCurrent(word.timestampe));
 		setfiltered(result);
-		console.log("filter", filtered);
+		// console.log("filter", filtered);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [props.date, data]);
 

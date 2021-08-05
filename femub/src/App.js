@@ -12,15 +12,6 @@ import DataMain from "./Components/data/DataMain";
 Amplify.configure(awsconfig);
 API.configure(awsconfig);
 
-Analytics.autoTrack("pageView", {
-	enable: true,
-	type: "SPA",
-});
-
-Analytics.autoTrack("event", {
-	enable: true,
-});
-
 createStore({
 	data: {},
 });

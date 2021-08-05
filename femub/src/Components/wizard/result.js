@@ -106,7 +106,7 @@ const Result = (props) => {
 			<button
 				type="back"
 				onClick={() => {
-					console.log(putData(state["data"]));
+					// console.log(putData(state["data"]));
 					props.close();
 				}}
 			>

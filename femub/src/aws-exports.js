@@ -8,7 +8,7 @@ const awsmobile = {
     "aws_user_pools_id": "eu-west-1_tGFMRzjck",
     "aws_user_pools_web_client_id": "4n0goubgg6j9dj94kgtdokpn30",
     "oauth": {},
-    "aws_mobile_analytics_app_id": "72a7ed4991294c3b8aa672ea295ac7af",
+    "aws_mobile_analytics_app_id": "4aeeeb29d2804e838de4d3b6b4b8c02c",
     "aws_mobile_analytics_app_region": "eu-west-1",
     "aws_cloud_logic_custom": [
         {
